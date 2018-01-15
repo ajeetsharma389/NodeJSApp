@@ -1,13 +1,8 @@
 // Express framework
-var express = require('express'); 
-var app = express();
+var http = require('http');
 
-// Handle requests to /
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+var server = http.createServer(function(req, res) {
+	res.writeHead(200, {'Content-Type':'text/plain'});
+	res.end('Hello world\n');
 });
-
-// Setup port
-app.listen(process.env.PORT || 8000);
-
-module.exports = app;
+server.listen(1400,'127.0.0.1');
