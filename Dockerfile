@@ -1,10 +1,15 @@
-FROM node:4-onbuild
-MAINTAINER Bryan CS <yanser25@gmail.com>
+FROM google/nodejs
+MAINTAINER Ajeet
 
-ADD . /var/www/srv
+WORKDIR /app
+ADD package.json /app/
+#ADD . /var/www/srv
 
-WORKDIR /var/www/srv
+#WORKDIR /var/www/srv
 
 RUN npm install
+ADD . /APP
+EXPOSE 8000
 
-CMD ["nodejs", "app.js"]
+CMD []
+ENTRYPOINT ["/nodejs/bin/npm", "start"]
