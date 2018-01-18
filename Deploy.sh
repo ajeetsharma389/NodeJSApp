@@ -1,4 +1,3 @@
--#!/bin/sh 
 killall -9 node
 node app.js
 #echo "Build succeed"
