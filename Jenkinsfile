@@ -1,12 +1,16 @@
 pipeline
 {
-	agent{
-		docker any
-	}
+	agent any
 	stages{
 		stage('Build'){
 			steps{
-				sh 'node --version'
+				npm intall
+			}			
+		}
+		stage(‘Deploy’){
+			steps{
+				npm stop
+				npm start
 			}			
 		}
 	}
