@@ -1,4 +1,4 @@
-pipeline
+node
 {
 	def app
 	agent { 
@@ -16,17 +16,13 @@ pipeline
 			echo "Pulling code from repo"
         	checkout scm
     	}
-        stage('Build') {
+        stage('Build Image') {
         	
         	app = docker.build "ajeetsharma389/NodeJSApp"
-        	/*steps {
-        		
-        		sh 'docker images'
-      		}*/
+        	
         }
-        /*stage('Running') {
-        	app = docker.run "-p 49160:8080 -d ajeet/docker_web_app"
-            
-        }*/
+    
     }
+    
+    
 }
