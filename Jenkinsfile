@@ -12,7 +12,7 @@ pipeline
         	agent{
         		docker
         			{
-   					docker file true
+   						dockerfile true
         				reuseNode true
         			}
         	}
