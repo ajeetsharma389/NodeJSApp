@@ -12,8 +12,8 @@ pipeline
         	agent{
         		docker
         			{
-        			image 'maven:3.5.0-jdk-8'
-        			reuseNode true
+   					docker file true
+        				reuseNode true
         			}
         	}
         	steps {
