@@ -1,5 +1,6 @@
 pipeline
 {
+def app
 	/*agent { 
 		node{
 			label 'dockerslave'
@@ -21,7 +22,8 @@ pipeline
         			}
         	}*/
         	steps {
-        		sh docker build -t ajeet/docker_web_app .
+        		
+        		sh docker build -t ajeet/docker_web_app
         		sh docker images
       		}
         }
