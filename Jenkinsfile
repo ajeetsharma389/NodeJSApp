@@ -1,17 +1,29 @@
 pipeline
 {
-	agent { dockerfile true }
-	stages{
-		stage('Build'){
-			steps{
-				npm intall
-			}			
+	agent { 
+		node{
+			label 'dockerslave'
+			customWorkspace '/Users/ajeet/jobs/'
 		}
-		stage(‘Deploy’){
-			steps{
-				npm stop
-				npm start
-			}			
-		}
-	}
+	 }
+	
+	stages {
+        stage('Build') {
+        	agent{
+        		docker
+        			{
+        			image 'maven:3.5.0-jdk-8'
+        			reuseNode true
+        			}
+        	}
+        	steps {
+        		echo "hello world"
+      		}
+        }
+        stage('Deploy') {
+            steps {
+                echo " deployed. Thanks!"
+            }
+        }
+    }
 }

@@ -1,23 +1,44 @@
-FROM openjdk:8-jdk-alpine
-MAINTAINER Oleg Nenashev <o.v.nenashev3@gmail.com>
+# use a node base image
+FROM node:carbon
 
-ENV HOME /var/jenkins
-RUN addgroup -S -g 10000 jenkins
-RUN adduser -S -u 10000 -h $HOME -G jenkins jenkins
-LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.16"
+# set maintainer
+LABEL maintainer "Ajeet"
 
-ARG VERSION=3.16
-ARG AGENT_WORKDIR=/Users/ajeet/CICD/nodes/JenkinsSlave/
+# Create app directory
+WORKDIR /usr/src/app
 
-RUN apk add --update --no-cache curl bash git openssh-client openssl \
-  && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${VERSION}/remoting-${VERSION}.jar \
-  && chmod 755 /var/jenkins \
-  #&& chmod 644 /Users/ajeet/CICD/nodes/JenkinsSlave/slave.jar \
-  && apk del curl
-USER jenkins
-ENV AGENT_WORKDIR=${AGENT_WORKDIR}
-#RUN mkdir /var/jenkins/.jenkins
 
-VOLUME /var/jenkins/
-VOLUME ${AGENT_WORKDIR}
-WORKDIR /var/jenkins
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+
+COPY package*.json ./
+
+
+
+RUN npm install
+
+# If you are building your code for production
+# RUN npm install --only=production
+
+#To bundle your app's source code inside the Docker image, use the COPY instruction:
+
+# Bundle app source
+COPY . .
+
+
+#Your app binds to port 8080 so you'll use the EXPOSE instruction to have it mapped by the docker daemon:
+# tell docker what port to expose
+EXPOSE 8080
+
+
+#define the command to run your app using CMD which defines your runtime. 
+#Here we will use the basic npm start which will run node server.js to start your server:
+
+CMD [ "npm", "start" ]
+
+# set a health check
+#HEALTHCHECK --interval=5s \
+           # --timeout=5s \
+           # CMD curl -f http://127.0.0.1:8080 || exit 1
+
