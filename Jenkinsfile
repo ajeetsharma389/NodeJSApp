@@ -1,6 +1,5 @@
 pipeline
 {
-def app
 	/*agent { 
 		node{
 			label 'dockerslave'
