@@ -29,7 +29,7 @@ def app
         }
         stage('Running') {
             steps {
-                sh docker run -p 49160:8080 -d ajeet/docker_web_app
+                sh 'docker run -p 49160:8080 -d ajeet/docker_web_app'
             }
         }
     }
