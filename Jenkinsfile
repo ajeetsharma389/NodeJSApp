@@ -23,8 +23,8 @@ def app
         	}*/
         	steps {
         		
-        		sh docker build -t ajeet/docker_web_app
-        		sh docker images
+        		sh 'docker build -t ajeet/docker_web_app .'
+        		sh 'docker images'
       		}
         }
         stage('Running') {
