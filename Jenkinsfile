@@ -9,10 +9,11 @@ pipeline
 	
 	stages {
         stage('Build') {
+        	agent { dockerfile true }
+        	
         	agent{
         		docker
         			{
-   						dockerfile true
         				reuseNode true
         			}
         	}
