@@ -1,13 +1,8 @@
 node
 {
 	def app
-	agent { 
-		node{
-			label 'dockerslave'
-			customWorkspace '/Users/ajeet/jobs/'
-		}
-	 }
 	
+
 	
 	stages {
 	
