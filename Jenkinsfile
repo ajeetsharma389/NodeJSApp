@@ -1,11 +1,7 @@
 node
 {
 	def app
-	
 
-	
-	stages {
-	
 		stage('Clone repository') {
        	 /* Let's make sure we have the repository cloned to our workspace */
 			echo "Pulling code from repo"
@@ -16,8 +12,6 @@ node
         	app = docker.build "ajeetsharma389/NodeJSApp"
         	
         }
-    
-    }
-    
+
     
 }
