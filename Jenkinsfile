@@ -11,7 +11,7 @@ pipeline
 	
 	stages {
 		stage('Clone repository') {
-        	/* Let's make sure we have the repository cloned to our workspace */
+        	
 			steps {
         		echo "clone code"
         		checkout scm
@@ -34,10 +34,10 @@ pipeline
         		//sh 'docker images'
       		}
         }
-        stage('Running') {
+        /*stage('Running') {
             steps {
               //  sh 'docker run -p 49160:9000 -d ajeetsharma389/NodeJSApp:100'
             }
-        }
+        }*/
     }
 }
