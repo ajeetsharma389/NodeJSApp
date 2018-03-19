@@ -12,19 +12,22 @@ pipeline
 	stages {
 		stage('Clone repository') {
         	/* Let's make sure we have the repository cloned to our workspace */
-
-        	checkout scm
+			steps {
+        		echo "clone code"
+        		checkout scm
+      		}
+        	
     	}
         stage('Build Image') {
         	
         	
-        	agent{
+        	/*agent{
         		docker
         			{
         				
         				reuseNode true
         			}
-        	}
+        	}*/
         	steps {
         		
         		sh 'docker build -t ajeetsharma389/NodeJSApp:100'
