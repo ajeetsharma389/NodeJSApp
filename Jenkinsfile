@@ -30,7 +30,7 @@ pipeline
         	}*/
         	steps {
         		
-        		sh 'docker build -t ajeetsharma389/NodeJSApp:100'
+        		sh 'docker build -t <dockerhubusername>/NodeJSApp:100'
         		//sh 'docker images'
       		}
         }
